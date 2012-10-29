@@ -36,7 +36,8 @@ Header file and documentation for popt development.
 %prep
 %setup -q
 
-sed -i -e 's#po/Makefile.in intl/Makefile##g' configure.ac
+sed -i 's#po/Makefile.in intl/Makefile##g' configure.ac
+sed -i '/AM_C_PROTOTYPES/d' configure.ac
 
 %build
 %{__gettextize}
@@ -61,8 +62,8 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	-p /usr/sbin/ldconfig
+%postun	-p /usr/sbin/ldconfig
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
