@@ -1,7 +1,7 @@
 Summary:	C library for parsing command line parameters
 Name:		popt
 Version:	1.16
-Release:	4
+Release:	5
 License:	X Consortium (MIT-like)
 Group:		Libraries
 Source0:	http://rpm5.org/files/popt/%{name}-%{version}.tar.gz
@@ -36,8 +36,9 @@ Header file and documentation for popt development.
 %prep
 %setup -q
 
-sed -i 's#po/Makefile.in intl/Makefile##g' configure.ac
-sed -i '/AM_C_PROTOTYPES/d' configure.ac
+%{__sed} -i 's#po/Makefile.in intl/Makefile##g' configure.ac
+%{__sed} -i '/AM_C_PROTOTYPES/d' configure.ac
+%{__sed} -i 's/^TESTS.*/TESTS = testit.sh/' Makefile.am
 
 %build
 %{__gettextize}
