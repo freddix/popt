@@ -1,7 +1,8 @@
+# based on PLD Linux spec git://git.pld-linux.org/packages/popt.git
 Summary:	C library for parsing command line parameters
 Name:		popt
 Version:	1.16
-Release:	5
+Release:	6
 License:	X Consortium (MIT-like)
 Group:		Libraries
 Source0:	http://rpm5.org/files/popt/%{name}-%{version}.tar.gz
@@ -57,6 +58,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	pkgconfigdir=%{_pkgconfigdir}	\
 	DESTDIR=$RPM_BUILD_ROOT
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %find_lang %{name}
 
